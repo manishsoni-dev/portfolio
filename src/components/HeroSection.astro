@@ -1,0 +1,104 @@
+---
+import { hasResumeAsset, resumeAsset } from "../data/assets";
+import { profile } from "../data/profile";
+import ButtonLink from "./ButtonLink.astro";
+
+const showResumeLink = hasResumeAsset();
+---
+
+<section class="premium-section mx-auto max-w-6xl px-5 py-24 sm:py-32 lg:px-8 lg:py-36">
+  <div class="relative max-w-5xl">
+    <p
+      class="mb-7 inline-flex items-center gap-2 rounded-full border border-portfolio-accent/20 bg-portfolio-soft px-4 py-2 font-mono text-[13px] font-semibold text-portfolio-accent-dark shadow-[0_1px_0_rgba(255,255,255,0.78)_inset,0_10px_22px_rgba(20,20,20,0.05)]"
+    >
+      <span class="status-dot" aria-hidden="true"></span>
+      {profile.availability}
+    </p>
+
+    <h1
+      class="font-display text-6xl font-bold leading-[0.98] tracking-normal text-portfolio-ink sm:text-7xl lg:text-8xl"
+    >
+      {profile.name}
+    </h1>
+
+    <p class="mt-7 max-w-3xl text-lg leading-8 text-portfolio-muted sm:text-xl sm:leading-9">
+      {profile.headline}
+    </p>
+
+    <p class="mt-4 max-w-2xl font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+      {profile.role}
+    </p>
+
+    <div class="mt-10 flex flex-col flex-wrap gap-3 sm:flex-row">
+      <ButtonLink
+        href="#projects"
+        label="View Projects"
+        variant="primary"
+        aria-label="View selected projects"
+        title="View Projects"
+      />
+      {showResumeLink && (
+        <ButtonLink
+          href={resumeAsset.path}
+          label="Download Resume"
+          variant="primary"
+          aria-label="Download Resume"
+          title="Download Resume"
+        />
+      )}
+      {!showResumeLink && (
+        <span
+          class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-5 text-[15px] font-semibold text-portfolio-muted"
+          aria-label="Resume coming soon"
+          title="Resume coming soon"
+        >
+          Resume coming soon
+        </span>
+      )}
+      <ButtonLink
+        href={profile.links.github}
+        label="GitHub"
+        external
+        aria-label="Visit Manish Soni's GitHub"
+        title="GitHub"
+      />
+      <ButtonLink
+        href={profile.links.linkedin}
+        label="LinkedIn"
+        external
+        aria-label="Visit Manish Soni's LinkedIn"
+        title="LinkedIn"
+      />
+      <ButtonLink
+        href={profile.links.email}
+        label="Email Me"
+        external={false}
+        aria-label="Email Manish Soni"
+        title="Email Manish Soni"
+      />
+    </div>
+  </div>
+
+  <div
+    class="premium-surface relative mt-24 grid gap-6 rounded-xl border border-portfolio-line bg-portfolio-surface px-5 py-6 text-[15px] text-portfolio-muted sm:grid-cols-3 sm:px-7 sm:py-7"
+  >
+    <p>
+      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Education
+      </span>
+      <span class="mt-2 block font-medium text-portfolio-ink">{profile.education}</span>
+    </p>
+    <p>
+      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Location
+      </span>
+      <span class="mt-2 block font-medium text-portfolio-ink">{profile.location}</span>
+    </p>
+    <p>
+      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Positioning
+      </span>
+      <span class="mt-2 block font-medium text-portfolio-ink">Python AI Developer</span>
+    </p>
+  </div>
+</section>

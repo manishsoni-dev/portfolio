@@ -1,0 +1,39 @@
+---
+import ContactSection from "../components/ContactSection.astro";
+import FocusSection from "../components/FocusSection.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ProfileSection from "../components/ProfileSection.astro";
+import ProofOfWorkSection from "../components/ProofOfWorkSection.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import RecruiterQuickScanSection from "../components/RecruiterQuickScanSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import TargetingSection from "../components/TargetingSection.astro";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999),
+);
+const proofProjects = projects.filter((project) => project.data.featured).slice(0, 3);
+---
+
+<BaseLayout title={site.title} description={site.description}>
+  <div class="premium-page-bg min-h-screen">
+    <SiteHeader showProjects={projects.length > 0} />
+
+    <main id="main-content" tabindex="-1">
+      <HeroSection />
+      <ProofOfWorkSection projects={proofProjects} />
+      <RecruiterQuickScanSection />
+      <ProjectsSection projects={projects} />
+      <TargetingSection />
+      <FocusSection />
+      <ProfileSection />
+      <ContactSection />
+    </main>
+
+    <SiteFooter />
+  </div>
+</BaseLayout>

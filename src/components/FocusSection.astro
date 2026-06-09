@@ -1,0 +1,32 @@
+---
+import { profile } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="bg-portfolio-bg" id="skills">
+  <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+    <SectionHeading
+      eyebrow="Skills"
+      title="Core technologies and tools I work with."
+    />
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        Object.entries(profile.skills).map(([category, items]) => (
+          <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-surface p-6">
+            <h3 class="mb-5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+              {category}
+            </h3>
+            <ul class="flex flex-wrap gap-2">
+              {items.map((item: string) => (
+                <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-3 py-2 font-mono text-[13px] font-medium text-portfolio-muted">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

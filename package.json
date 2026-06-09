@@ -1,0 +1,31 @@
+{
+  "name": "manish-soni-portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && rm -rf dist && astro build",
+    "preview": "astro preview",
+    "verify": "npm run build && node scripts/verify-content.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.3",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^25.9.1",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "yaml": "^2.9.0"
+  }
+}

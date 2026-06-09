@@ -1,0 +1,45 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found | Manish Soni"
+  description="Page not found on Manish Soni's developer portfolio."
+  noindex
+>
+  <div class="premium-page-bg min-h-screen">
+    <SiteHeader />
+
+    <main
+      id="main-content"
+      tabindex="-1"
+      class="mx-auto flex min-h-[70vh] max-w-6xl items-center px-5 py-16 lg:px-8"
+    >
+      <section class="max-w-2xl">
+        <p class="mb-4 font-mono text-sm font-medium uppercase tracking-[0.08em] text-portfolio-accent">
+          404
+        </p>
+        <h1 class="font-display text-5xl font-bold leading-tight tracking-normal text-portfolio-ink sm:text-6xl">
+          This page was not found.
+        </h1>
+        <p class="mt-5 text-lg leading-8 text-portfolio-muted">
+          The portfolio route you opened does not exist. You can return to the
+          homepage, review project case studies, or open the recruiter-focused
+          profile.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <ButtonLink href="/" label="Back to Homepage" variant="primary" />
+          <ButtonLink href="/projects/" label="View Projects" />
+          <ButtonLink
+            href="/hire-me/"
+            label="Recruiter Profile"
+            aria-label="Open Manish Soni's recruiter profile"
+            title="Recruiter Profile"
+          />
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

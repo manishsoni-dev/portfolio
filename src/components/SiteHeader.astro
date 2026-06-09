@@ -1,0 +1,32 @@
+---
+import { profile } from "../data/profile";
+
+interface Props {
+  showProjects?: boolean;
+}
+
+const { showProjects = false } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 border-b border-portfolio-line/80 bg-portfolio-bg/90 backdrop-blur-md">
+  <nav
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-8"
+    aria-label="Primary navigation"
+  >
+    <a
+      href="/"
+      class="font-display text-lg font-bold tracking-normal text-portfolio-ink transition-colors hover:text-portfolio-accent"
+      aria-label="Manish Soni home"
+    >
+      {profile.logo}
+    </a>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-3 text-[14px] font-medium text-portfolio-muted">
+      {showProjects && <a class="transition-colors hover:text-portfolio-accent" href="#projects">Projects</a>}
+      <a class="transition-colors hover:text-portfolio-accent" href="#skills">Skills</a>
+      <a class="transition-colors hover:text-portfolio-accent" href="#profile">Profile</a>
+      <a class="transition-colors hover:text-portfolio-accent" href="/hire-me/">Hire Me</a>
+      <a class="transition-colors hover:text-portfolio-accent" href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>

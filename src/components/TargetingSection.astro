@@ -1,0 +1,21 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section class="bg-portfolio-bg">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
+    <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-surface p-6 sm:p-8">
+      <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Currently targeting
+      </p>
+
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {profile.targetRoles.map((role) => (
+          <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-4 py-3 text-[15px] font-semibold text-portfolio-ink">
+            {role}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

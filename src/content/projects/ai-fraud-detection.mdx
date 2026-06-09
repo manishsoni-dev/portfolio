@@ -1,0 +1,38 @@
+---
+title: "AI Fraud Detection System"
+summary: "An ML pipeline that classifies financial transactions as fraudulent or legitimate using ensemble methods and exposes predictions through a REST API."
+category: "AI/ML"
+problem: "Fraud detection needs a practical way to classify risky transactions while keeping false positives understandable."
+built: "Built a machine learning classification pipeline with feature engineering, model evaluation, and a REST API prediction surface."
+outcome: "ML fraud classification pipeline with REST API exposure."
+stack:
+  - Python
+  - scikit-learn
+  - Pandas
+  - REST API
+repository: "https://github.com/manishsoni-dev/ai-fraud-detection"
+repoUrl: "https://github.com/manishsoni-dev/ai-fraud-detection"
+labels:
+  - AI/ML
+  - Backend
+statusLabels:
+  - Repository Available
+  - Demo Coming Soon
+  - Case Study
+order: 4
+---
+
+## Problem
+
+Financial fraud detection requires processing high-volume transaction streams with low latency and high recall — missing a fraudulent transaction is costly, but flagging too many legitimate ones degrades user trust.
+
+## Approach
+
+Built a classification pipeline using scikit-learn that trains on labeled transaction data, engineers features from transaction metadata (amount patterns, frequency, geolocation anomalies), and serves predictions via a REST API endpoint.
+
+## Key Details
+
+- Feature engineering pipeline extracts temporal patterns, velocity checks, and statistical anomalies from raw transaction records
+- Evaluated multiple classifiers (Random Forest, Gradient Boosting, Logistic Regression) with cross-validation
+- Handled severe class imbalance using SMOTE and adjusted class weights
+- REST API accepts transaction payloads and returns fraud probability scores with configurable thresholds

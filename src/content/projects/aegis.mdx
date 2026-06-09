@@ -1,0 +1,82 @@
+---
+title: "Aegis — AI Engineer Automation / Repository Repair System"
+summary: "Repository-level AI engineering automation system for structured code repair workflows, verification, patch proposals, controlled apply, rollback, evidence reports, and repository memory."
+category: "Developer Tools"
+problem: "Repository repair workflows can become difficult to trust when proposed changes are not tied to verification, rollback, or evidence."
+built: "Built a mission-runner style workflow for repository analysis, repair proposals, verification, and evidence generation."
+outcome: "Repository repair workflow with verification runner, patch handling, and evidence reports."
+role: "Builder"
+stack:
+  - Python
+  - CLI Tooling
+  - pytest
+  - Git Workflows
+  - Patch Handling
+  - Verification Runner
+  - Repository Memory
+  - JSON Reports
+  - Markdown Reports
+labels:
+  - Featured
+  - AI/LLM
+  - Developer Tools
+  - In Progress
+statusLabels:
+  - In Progress
+  - Demo Coming Soon
+  - Case Study
+status: "in-progress"
+featured: true
+order: 3
+---
+
+{/* TODO: Add proofImageUrls for Aegis CLI output, evidence report, and PatchCard / verification output when public image files or artifacts exist. */}
+
+## Problem
+
+Repository repair workflows can become hard to trust when changes are not tied to verification, rollback plans, or evidence. A safer workflow needs structured analysis, reviewable patch proposals, and clear audit artifacts.
+
+## Why It Matters
+
+AI-assisted engineering tools are easier to review when they produce clear evidence, bounded actions, and reversible steps. Aegis explores how repository-level repair work can be organized so a developer can inspect what changed and why.
+
+## What I Built
+
+Built a mission-runner style workflow for repository analysis, repair proposals, verification, and evidence generation. The project is presented as an in-progress developer-tools system, not as a production autonomous engineer.
+
+## Architecture / Workflow
+
+1. A mission runner inspects the repository and repair goal.
+2. The workflow proposes patch-oriented changes instead of applying opaque edits.
+3. Verification commands run through an allowlisted runner.
+4. Controlled apply and rollback concepts keep changes reviewable.
+5. PatchCards, JSON reports, and Markdown evidence reports document the outcome.
+6. Repository memory and repair logs preserve context for future debugging.
+
+## Tech Stack
+
+- Python for CLI and workflow orchestration
+- pytest and allowlisted verification commands
+- Git workflows and patch/diff handling
+- JSON and Markdown evidence reports
+- Repository memory and repair outcome logging
+
+## Key Features
+
+- Built a mission-runner style workflow for repository analysis, repair proposals, verification, and evidence generation
+- Added allowlisted verification commands, patch proposal handling, controlled apply, rollback, and audit trail concepts
+- Implemented repository memory and repair outcome logging to improve future debugging and repair workflows
+- Designed evidence reports and PatchCards to make automated code changes reviewable and explainable
+- Used tests and structured artifacts to keep automation safer and easier to inspect
+
+## Proof Links
+
+Public demo and source links will be enabled when stable URLs are available. The portfolio should not render broken Aegis links.
+
+## What I Learned
+
+I learned that automation becomes more useful when it is bounded, explainable, and easy to verify. The evidence layer matters as much as the patch itself.
+
+## What I Would Improve Next
+
+I would publish a stable repository/demo when ready, add more fixture-based repair scenarios, and refine the evidence reports so a reviewer can scan risk, verification, and rollback notes faster.

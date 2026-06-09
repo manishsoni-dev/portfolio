@@ -1,0 +1,29 @@
+---
+import { profile } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+import TagList from "./TagList.astro";
+---
+
+<section id="profile" class="border-y border-portfolio-line bg-portfolio-surface">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+    <div>
+      <SectionHeading
+        eyebrow="Profile"
+        title={profile.headline}
+      />
+      <p class="max-w-xl text-base leading-8 text-portfolio-muted">
+        I am a B.Tech CSE graduate from India building practical AI and backend
+        projects around LLM applications, RAG-style workflows, developer tools,
+        data analysis, and automation. My focus is on creating systems that
+        connect AI outputs with usable product workflows, APIs, and verification.
+      </p>
+    </div>
+
+    <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6 sm:p-8">
+      <h3 class="mb-5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Working Areas
+      </h3>
+      <TagList items={profile.roleTags} />
+    </div>
+  </div>
+</section>

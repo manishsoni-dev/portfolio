@@ -1,0 +1,76 @@
+---
+import { hasResumeAsset, resumeAsset } from "../data/assets";
+import { profile } from "../data/profile";
+
+const showResumeLink = hasResumeAsset();
+---
+
+<section id="contact" class="bg-portfolio-dark-bg text-portfolio-dark-text">
+  <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <p class="mb-4 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent-soft">
+          Contact
+        </p>
+        <h2 class="max-w-4xl font-display text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
+          Let's talk about AI, Python, backend APIs, or developer opportunities.
+        </h2>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-portfolio-dark-text/80">
+          Open to remote AI/Python roles, internships, and junior developer
+          opportunities. Based in India, available for immediate start. You can also reach me directly at <a href={profile.links.email} class="font-medium text-portfolio-dark-text underline transition-colors hover:text-portfolio-accent-soft">mmanishsoni70@gmail.com</a>.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-col lg:flex-nowrap">
+        <a
+          href={profile.links.email}
+          aria-label="Email Manish Soni"
+          title="Email Manish Soni"
+          class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-dark-text bg-portfolio-dark-text px-5 text-center text-[15px] font-semibold text-portfolio-dark-bg transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent hover:bg-portfolio-accent hover:text-portfolio-dark-text [overflow-wrap:anywhere]"
+        >
+          {profile.links.emailLabel}
+        </a>
+        <a
+          href={profile.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Manish Soni's GitHub"
+          title="GitHub"
+          class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-dark-text/20 px-5 text-center text-[15px] font-semibold text-portfolio-dark-text transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent-soft hover:bg-portfolio-dark-text/10 hover:text-portfolio-accent-soft [overflow-wrap:anywhere]"
+        >
+          github.com/manishsoni-dev
+        </a>
+        <a
+          href={profile.links.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Manish Soni's LinkedIn"
+          title="LinkedIn"
+          class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-dark-text/20 px-5 text-center text-[15px] font-semibold text-portfolio-dark-text transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent-soft hover:bg-portfolio-dark-text/10 hover:text-portfolio-accent-soft [overflow-wrap:anywhere]"
+        >
+          linkedin.com/in/manishsoni-dev
+        </a>
+        {
+          showResumeLink ? (
+            <a
+              href={resumeAsset.path}
+              aria-label="Download Manish Soni resume"
+              title="Download Resume"
+              class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-dark-text/20 px-5 text-center text-[15px] font-semibold text-portfolio-dark-text transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent-soft hover:bg-portfolio-dark-text/10 hover:text-portfolio-accent-soft [overflow-wrap:anywhere]"
+            >
+              Download Resume
+            </a>
+          ) : (
+            <span
+              aria-label="Resume coming soon"
+              title="Resume coming soon"
+              class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-dark-text/20 px-5 text-center text-[15px] font-semibold text-portfolio-dark-text/60 [overflow-wrap:anywhere]"
+            >
+              Resume coming soon
+            </span>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

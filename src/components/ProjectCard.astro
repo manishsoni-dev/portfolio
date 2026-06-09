@@ -1,0 +1,131 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const cardLabels = project.data.labels.slice(0, 5);
+const liveDemoUrl = project.data.liveDemoUrl ?? project.data.demo;
+const repoUrl = project.data.repoUrl ?? project.data.repository;
+const statusLabels =
+  project.data.statusLabels.length > 0
+    ? project.data.statusLabels
+    : [
+        ...(liveDemoUrl ? ["Live Demo"] : project.data.featured ? ["Demo Coming Soon"] : []),
+        ...(repoUrl ? ["Repository Available"] : []),
+        "Case Study",
+      ];
+---
+
+<article
+  class:list={[
+    "premium-card-shadow group rounded-xl border bg-portfolio-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent/35 hover:shadow-[0_26px_62px_rgba(20,20,20,0.095)] sm:p-8",
+    project.data.featured ? "border-portfolio-accent/35" : "border-portfolio-line",
+  ]}
+>
+  {
+    cardLabels.length > 0 && (
+      <ul class="mb-5 flex flex-wrap gap-2">
+        {cardLabels.map((label) => (
+          <li
+            class:list={[
+              "rounded-full border px-3 py-1 font-mono text-[13px] font-semibold",
+              label === "Featured"
+                ? "border-portfolio-accent bg-portfolio-accent text-portfolio-dark-text"
+                : "border-portfolio-accent/15 bg-portfolio-soft text-portfolio-accent-dark",
+            ]}
+          >
+            {label}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+    <div class="max-w-3xl">
+      <p class="mb-3 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        {project.data.category ?? "Project"}
+      </p>
+      <h3 class="font-display text-2xl font-semibold tracking-normal text-portfolio-ink">
+        {project.data.title}
+      </h3>
+      <p class="mt-4 text-base leading-8 text-portfolio-muted">
+        {project.data.problem ?? project.data.summary}
+      </p>
+      {project.data.built && (
+        <p class="mt-3 text-base leading-8 text-portfolio-ink">
+          {project.data.built}
+        </p>
+      )}
+    </div>
+  </div>
+
+  <ul class="mt-6 flex flex-wrap gap-2">
+    {statusLabels.map((label) => (
+      <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-3 py-1.5 font-mono text-[13px] font-semibold text-portfolio-muted">
+        {label}
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+    {
+      liveDemoUrl ? (
+        <a
+          href={liveDemoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open live demo experience for ${project.data.title}`}
+          class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-ink bg-portfolio-ink px-4 text-[14px] font-semibold text-portfolio-bg transition-all duration-200 hover:border-portfolio-accent hover:bg-portfolio-accent"
+        >
+          Live Demo Experience
+        </a>
+      ) : project.data.featured || repoUrl ? (
+        <span class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-4 text-[14px] font-semibold text-portfolio-muted">
+          Demo coming soon
+        </span>
+      ) : null
+    }
+
+    {
+      repoUrl ? (
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open source repository for ${project.data.title}`}
+          class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+        >
+          Source Repository
+        </a>
+      ) : project.data.featured ? (
+        <span class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-4 text-[14px] font-semibold text-portfolio-muted">
+          Source repository coming soon
+        </span>
+      ) : null
+    }
+
+    <a
+      href={`/projects/${project.id}/`}
+      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+      aria-label={`View case study details for ${project.data.title}`}
+    >
+      View Case Study / Details
+    </a>
+  </div>
+
+  {
+    project.data.stack.length > 0 && (
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {project.data.stack.map((item) => (
+          <li class="rounded-md border border-portfolio-accent/15 bg-portfolio-soft px-3 py-1.5 font-mono text-[13px] font-medium text-portfolio-accent-dark">
+            {item}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>

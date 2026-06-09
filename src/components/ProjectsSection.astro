@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+---
+
+{
+  projects.length > 0 && (
+    <section id="projects" class="border-y border-portfolio-line bg-portfolio-surface">
+      <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+        <SectionHeading eyebrow="Projects" title="Selected work with implementation notes." />
+        <div class="grid gap-5">
+          {projects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

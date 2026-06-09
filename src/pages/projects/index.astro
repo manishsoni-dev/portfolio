@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/ProjectCard.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999),
+);
+---
+
+<BaseLayout
+  title={`Projects | ${site.title}`}
+  description="Selected AI, backend, developer tools, and data projects by Manish Soni with case-study details and proof links."
+>
+  <div class="premium-page-bg min-h-screen">
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <section class="mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:px-8">
+        <a
+          href="/"
+          class="inline-flex text-[14px] font-semibold text-portfolio-accent-dark underline underline-offset-4 transition-colors hover:text-portfolio-accent"
+        >
+          Back to portfolio
+        </a>
+
+        <div class="mt-10 max-w-4xl">
+          <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+            Projects
+          </p>
+          <h1 class="mt-4 font-display text-5xl font-bold leading-tight text-portfolio-ink sm:text-6xl">
+            AI, backend, and developer-tool projects with inspectable proof.
+          </h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-portfolio-muted">
+            A focused set of practical projects for recruiter review, ordered by
+            strength and relevance to AI engineering, backend APIs, and developer
+            tools internships.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-5">
+          {projects.map((project) => <ProjectCard project={project} />)}
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+</BaseLayout>

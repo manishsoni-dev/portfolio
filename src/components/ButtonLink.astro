@@ -1,0 +1,29 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: "primary" | "secondary";
+  external?: boolean;
+  [key: string]: any;
+}
+
+const { href, label, variant = "secondary", external = false, ...rest } = Astro.props;
+
+const baseClass =
+  "inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold tracking-normal transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-portfolio-accent";
+
+const variantClass =
+  variant === "primary"
+    ? "border-portfolio-ink bg-portfolio-ink text-portfolio-bg shadow-[0_14px_30px_rgba(20,20,20,0.16)] hover:-translate-y-0.5 hover:border-portfolio-accent hover:bg-portfolio-accent hover:shadow-[0_18px_36px_rgba(63,95,69,0.22)]"
+    : "border-portfolio-line bg-portfolio-surface text-portfolio-ink shadow-[0_1px_0_rgba(255,255,255,0.75)_inset,0_10px_24px_rgba(20,20,20,0.055)] hover:-translate-y-0.5 hover:border-portfolio-accent/45 hover:bg-portfolio-soft hover:text-portfolio-accent-dark hover:shadow-[0_16px_32px_rgba(20,20,20,0.08)]";
+---
+
+<a
+  href={href}
+  class={`${baseClass} ${variantClass}`}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  {...rest}
+>
+  {label}
+</a>

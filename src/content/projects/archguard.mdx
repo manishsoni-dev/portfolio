@@ -1,0 +1,117 @@
+---
+title: "ArchGuard — AI GitHub PR Architecture Review Bot"
+summary: "AI-powered GitHub App that reviews pull requests for architecture drift using repository context, ADRs, codebase conventions, and RAG-style analysis."
+category: "Developer Tools"
+problem: "Pull requests can introduce architecture drift when code does not match repository structure, ADRs, or conventions."
+built: "Built a GitHub PR webhook workflow that moves from Fastify API to Redis/BullMQ worker to repository context retrieval, RAG-style analysis, and GitHub Check Run verdicts."
+outcome: "GitHub PR review bot with Checks API verdicts and RAG-style repository analysis."
+role: "Builder"
+stack:
+  - TypeScript
+  - Fastify
+  - Prisma
+  - PostgreSQL
+  - pgvector
+  - Redis
+  - BullMQ
+  - GitHub Apps
+  - GitHub Webhooks
+  - GitHub Checks API
+  - Vercel
+  - Replit
+  - RAG-style Retrieval
+labels:
+  - Featured
+  - AI/LLM
+  - Backend
+  - Developer Tools
+  - Live Demo
+statusLabels:
+  - Live Demo
+  - Repository Available
+  - Case Study
+repoUrl: "https://github.com/manishsoni-dev/ArchGuard"
+liveDemoUrl: "https://demo-web-delta-five.vercel.app"
+apiUrl: "https://arch-guard-1--manishsoni-dev.replit.app"
+proofUrl: "https://github.com/manishsoni-dev/ArchGuard/pull/8"
+proofImageUrls:
+  - src: "/images/projects/archguard/demo-ui.png"
+    alt: "ArchGuard public demo UI showing the architecture review proof surface"
+    caption: "Vercel demo UI for ArchGuard with the proof surface and live API link."
+  - src: "/images/projects/archguard/proof-surface.png"
+    alt: "ArchGuard proof surface showing API to worker to Check Run flow and FIT verdict counts"
+    caption: "Proof surface showing the API to worker to Check Run workflow and a public proof set with FIT verdicts."
+  - src: "/images/projects/archguard/proof-pr.png"
+    alt: "GitHub pull request proof for ArchGuard with checks passed"
+    caption: "Public proof PR showing the live demo verification work and passed checks on GitHub."
+repository: "https://github.com/manishsoni-dev/ArchGuard"
+demo: "https://demo-web-delta-five.vercel.app"
+liveApi: "https://arch-guard-1--manishsoni-dev.replit.app"
+proof: "https://github.com/manishsoni-dev/ArchGuard/pull/8"
+status: "live"
+featured: true
+order: 1
+---
+
+{/* TODO: Refresh proofImageUrls when new real screenshots are captured for ArchGuard demo UI, GitHub Check Run verdict, and Proof PR. */}
+
+## Problem
+
+Pull requests can introduce architecture drift when code does not match repository structure, ADRs, or conventions. A reviewer may not immediately know whether a change fits the existing architecture, especially in a repository with multiple services, conventions, and historical decisions.
+
+## Why It Matters
+
+Teams need early feedback on architectural fit before merging code. ArchGuard focuses on making that context easier to inspect by turning repository signals into a clear GitHub Check Run verdict before review debt piles up.
+
+## What I Built
+
+Built a GitHub App integration that receives pull request webhooks, analyzes repository context, and posts GitHub Check Run verdicts for architecture fit. The project includes a public demo UI, a live API/worker deployment, and proof endpoints for recruiter review.
+
+## Architecture / Workflow
+
+GitHub PR webhook → Fastify API → Redis/BullMQ worker → repository context retrieval → RAG-style analysis → GitHub Check Run verdict.
+
+1. A pull request event arrives through GitHub webhooks.
+2. The Fastify API validates and queues the review job.
+3. Redis and BullMQ move work into a background worker pipeline.
+4. Prisma and PostgreSQL persist repository, pull request, and review state.
+5. Repository context, ADRs, and codebase conventions are retrieved for RAG-style analysis.
+6. The result is posted back to GitHub through the Checks API as a review verdict.
+
+## Verdicts
+
+- `FIT`
+- `DRIFT_RISK`
+- `INSUFFICIENT_EVIDENCE`
+
+## Tech Stack
+
+- TypeScript and Fastify for the API
+- Prisma, PostgreSQL, and pgvector for persistence and retrieval support
+- Redis and BullMQ for background review jobs
+- GitHub Apps, GitHub Webhooks, and GitHub Checks API for GitHub integration
+- Vercel for the public demo UI
+- Replit for the API/worker deployment
+
+## Key Features
+
+- Built a GitHub App integration that receives pull request webhooks and posts GitHub Check Runs
+- Developed a TypeScript/Fastify backend with Redis/BullMQ worker pipeline and Prisma/PostgreSQL persistence
+- Implemented RAG-style repository analysis using repository context, ADRs, and codebase conventions
+- Added safe configurable provider/demo mode for public testing without exposing private API keys
+- Deployed a public Vercel demo UI and Replit API/worker with health, readiness, version, and demo proof endpoints
+
+## Proof Links
+
+- [Live Demo Experience](https://demo-web-delta-five.vercel.app)
+- [Source Repository](https://github.com/manishsoni-dev/ArchGuard)
+- [Live API](https://arch-guard-1--manishsoni-dev.replit.app)
+- [Proof PR](https://github.com/manishsoni-dev/ArchGuard/pull/8)
+
+## What I Learned
+
+I learned backend workflow design, async workers, GitHub API integration, RAG-style context retrieval, check-run automation, and proof-first project presentation.
+
+## What I Would Improve Next
+
+I would improve the evaluation set, strengthen architecture-rule extraction, add richer PR explanations, support more repository adapters, and build an authenticated multi-repo setup.

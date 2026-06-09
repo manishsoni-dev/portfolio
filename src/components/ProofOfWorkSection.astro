@@ -1,0 +1,89 @@
+---
+import type { CollectionEntry } from "astro:content";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+
+function getLiveDemoUrl(project: CollectionEntry<"projects">): string | undefined {
+  return project.data.liveDemoUrl ?? project.data.demo;
+}
+
+function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
+  return project.data.repoUrl ?? project.data.repository;
+}
+---
+
+{
+  projects.length > 0 && (
+    <section id="proof" class="border-y border-portfolio-line bg-portfolio-surface">
+      <div class="mx-auto max-w-6xl px-5 py-18 lg:px-8">
+        <SectionHeading
+          eyebrow="Proof of Work"
+          title="Working AI/backend projects recruiters can inspect quickly."
+        />
+
+        <div class="grid gap-5 lg:grid-cols-3">
+          {projects.map((project) => {
+            const liveDemoUrl = getLiveDemoUrl(project);
+            const repoUrl = getRepoUrl(project);
+            const badges = project.data.stack.slice(0, 4);
+
+            return (
+              <article class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+                <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+                  {project.data.category ?? "Project"}
+                </p>
+                <h3 class="mt-3 font-display text-2xl font-semibold leading-tight text-portfolio-ink">
+                  {project.data.title}
+                </h3>
+                <p class="mt-4 text-base leading-7 text-portfolio-muted">
+                  {project.data.outcome ?? project.data.summary}
+                </p>
+
+                {badges.length > 0 && (
+                  <ul class="mt-5 flex flex-wrap gap-2">
+                    {badges.map((badge) => (
+                      <li class="rounded-md border border-portfolio-accent/15 bg-portfolio-soft px-3 py-1.5 font-mono text-[13px] font-medium text-portfolio-accent-dark">
+                        {badge}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div class="mt-6 flex flex-col gap-3">
+                  {liveDemoUrl && (
+                    <a
+                      href={liveDemoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open live demo for ${project.data.title}`}
+                      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-ink bg-portfolio-ink px-4 text-[14px] font-semibold text-portfolio-bg transition-colors hover:border-portfolio-accent hover:bg-portfolio-accent"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+
+                  {repoUrl && (
+                    <a
+                      href={repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open source repository for ${project.data.title}`}
+                      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+                    >
+                      Repository
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

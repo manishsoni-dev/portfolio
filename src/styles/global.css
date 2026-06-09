@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-portfolio-bg: #F7F4EC;
+  --color-portfolio-surface: #FFFCF6;
+  --color-portfolio-ink: #141414;
+  --color-portfolio-muted: #68645C;
+  --color-portfolio-soft: #EAF2E6;
+  --color-portfolio-accent-soft: #EAF2E6;
+  --color-portfolio-line: #DED8CB;
+  --color-portfolio-accent: #3F5F45;
+  --color-portfolio-accent-dark: #3F5F45;
+  --color-portfolio-dark-bg: #121411;
+  --color-portfolio-dark-text: #F7F4EC;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--color-portfolio-bg);
+    color: var(--color-portfolio-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-portfolio-soft);
+    color: var(--color-portfolio-ink);
+  }
+
+  a {
+    text-underline-offset: 4px;
+  }
+
+  :focus-visible {
+    outline-color: var(--color-portfolio-accent);
+  }
+}
+
+@layer components {
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-portfolio-accent);
+    box-shadow: 0 0 0 0 rgba(63, 95, 69, 0.28);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(63, 95, 69, 0.28);
+    }
+    50% {
+      box-shadow: 0 0 0 7px rgba(63, 95, 69, 0);
+    }
+  }
+
+  .premium-page-bg {
+    background:
+      linear-gradient(180deg, rgba(255, 252, 246, 0.74) 0%, rgba(247, 244, 236, 0) 36rem),
+      var(--color-portfolio-bg);
+  }
+
+  .premium-section {
+    position: relative;
+  }
+
+  .premium-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(20, 20, 20, 0.025) 1px, transparent 1px);
+    background-size: 100% 34px;
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 78%, transparent);
+  }
+
+  .premium-surface {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.78) inset,
+      0 18px 48px rgba(20, 20, 20, 0.055);
+  }
+
+  .premium-card-shadow {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.78) inset,
+      0 22px 54px rgba(20, 20, 20, 0.07);
+  }
+
+  .project-content :where(h2, h3) {
+    color: var(--color-portfolio-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .project-content h2 {
+    margin-top: 2.5rem;
+    font-size: 1.75rem;
+  }
+
+  .project-content h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+  }
+
+  .project-content p,
+  .project-content ul,
+  .project-content ol {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .project-content ul,
+  .project-content ol {
+    padding-left: 1.25rem;
+  }
+
+  .project-content li + li {
+    margin-top: 0.5rem;
+  }
+
+  .project-content a {
+    color: var(--color-portfolio-accent-dark);
+    font-weight: 500;
+    text-decoration-line: underline;
+  }
+}

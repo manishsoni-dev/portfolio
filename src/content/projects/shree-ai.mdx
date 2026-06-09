@@ -1,0 +1,38 @@
+---
+title: "Shree.ai — LLM Tool Finder"
+summary: "A semantic search engine that matches natural-language queries to the right AI tool using vector embeddings and similarity search."
+category: "AI/LLM"
+problem: "Developers and teams need a faster way to match a plain-English need to a relevant AI tool."
+built: "Built a FastAPI semantic search backend that embeds tool descriptions and returns similar tools from a FAISS index."
+outcome: "Semantic AI tool finder using embeddings and vector search."
+stack:
+  - Python
+  - LLM API
+  - FastAPI
+  - FAISS
+repository: "https://github.com/manishsoni-dev/shree-ai"
+repoUrl: "https://github.com/manishsoni-dev/shree-ai"
+labels:
+  - AI/LLM
+  - Backend
+statusLabels:
+  - Repository Available
+  - Demo Coming Soon
+  - Case Study
+order: 5
+---
+
+## Problem
+
+Developers and teams waste time evaluating dozens of overlapping AI tools when they need a specific capability. There was no fast, semantic way to describe a need in plain English and get matched to the right tool.
+
+## Approach
+
+Built a FastAPI backend that ingests tool metadata, generates embeddings for each tool's description and capabilities, and stores them in a FAISS vector index. When a user submits a natural-language query, the system embeds the query and returns the top-k most semantically similar tools with relevance scores.
+
+## Key Details
+
+- Designed the ingestion pipeline to normalize tool metadata from multiple sources into a consistent schema
+- Used embedding-based vector generation for semantic matching
+- FAISS index enables sub-millisecond similarity search across the full tool corpus
+- FastAPI serves the search endpoint with automatic OpenAPI documentation

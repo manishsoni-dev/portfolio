@@ -1,0 +1,158 @@
+---
+import { getCollection } from "astro:content";
+import ButtonLink from "../components/ButtonLink.astro";
+import TagList from "../components/TagList.astro";
+import { hasResumeAsset, resumeAsset } from "../data/assets";
+import { profile } from "../data/profile";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999))
+  .slice(0, 3);
+const showResumeLink = hasResumeAsset();
+const coreSkills = [
+  "Python",
+  "TypeScript",
+  "LLM Applications",
+  "RAG-style Retrieval",
+  "Backend APIs",
+  "GitHub Apps",
+  "Redis / BullMQ",
+  "Prisma / PostgreSQL",
+  "Vercel",
+  "Replit",
+];
+---
+
+<BaseLayout
+  title={`Hire Manish Soni | ${site.title}`}
+  description="Recruiter-focused profile for Manish Soni: AI/backend internship roles, top projects, grouped skills, resume, and contact links."
+>
+  <main id="main-content" class="premium-page-bg min-h-screen">
+    <section class="mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:px-8">
+      <a
+        href="/"
+        class="inline-flex text-[14px] font-semibold text-portfolio-accent-dark underline underline-offset-4 transition-colors hover:text-portfolio-accent"
+      >
+        Back to portfolio
+      </a>
+
+      <div class="mt-10 max-w-4xl">
+        <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+          Hire me
+        </p>
+        <h1 class="mt-4 font-display text-5xl font-bold leading-tight text-portfolio-ink sm:text-6xl">
+          Practical AI/backend developer for internship and junior engineering teams.
+        </h1>
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-portfolio-muted">
+          {profile.headline}
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          {showResumeLink ? (
+            <ButtonLink
+              href={resumeAsset.path}
+              label="Download Resume"
+              variant="primary"
+              aria-label="Download Manish Soni resume"
+            />
+          ) : (
+            <span class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-5 text-[15px] font-semibold text-portfolio-muted">
+              Resume coming soon
+            </span>
+          )}
+          <ButtonLink href={profile.links.email} label="Email Me" aria-label="Email Manish Soni" />
+          <ButtonLink href={profile.links.linkedin} label="LinkedIn" external aria-label="Visit Manish Soni's LinkedIn" />
+          <ButtonLink href={profile.links.github} label="GitHub" external aria-label="Visit Manish Soni's GitHub" />
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-portfolio-line bg-portfolio-surface">
+      <div class="mx-auto grid max-w-6xl gap-6 px-5 py-12 lg:grid-cols-3 lg:px-8">
+        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+          <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+            Current positioning
+          </p>
+          <p class="mt-4 text-base font-semibold leading-7 text-portfolio-ink">
+            {profile.role}
+          </p>
+        </div>
+        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+          <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+            Location
+          </p>
+          <p class="mt-4 text-base font-semibold leading-7 text-portfolio-ink">
+            India · Open to remote and India-based internships
+          </p>
+        </div>
+        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+          <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+            Strongest proof
+          </p>
+          <p class="mt-4 text-base font-semibold leading-7 text-portfolio-ink">
+            ArchGuard · Aidssist V3 · Aegis
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
+        <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+          Roles I am targeting
+        </p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-portfolio-ink">
+          Internship and early-career AI/backend roles.
+        </h2>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {profile.targetRoles.map((role) => (
+            <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-4 py-3 text-[15px] font-semibold text-portfolio-ink">
+              {role}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="border-y border-portfolio-line bg-portfolio-surface">
+      <div class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
+        <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+          Core skills
+        </p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-portfolio-ink">
+          Skills aligned to the roles above.
+        </h2>
+        <TagList items={coreSkills} class="mt-6" />
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
+      <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+        Top projects
+      </p>
+      <div class="mt-6 grid gap-5 lg:grid-cols-3">
+        {projects.map((project) => (
+          <article class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-surface p-6">
+            <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+              {project.data.category}
+            </p>
+            <h2 class="mt-3 font-display text-2xl font-semibold leading-tight text-portfolio-ink">
+              {project.data.title}
+            </h2>
+            <p class="mt-4 text-base leading-7 text-portfolio-muted">
+              {project.data.outcome ?? project.data.summary}
+            </p>
+            <a
+              href={`/projects/${project.id}/`}
+              class="mt-5 inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+            >
+              View Case Study
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
