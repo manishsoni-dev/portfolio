@@ -2,6 +2,7 @@
 import { hasResumeAsset, resumeAsset } from "../data/assets";
 import { profile } from "../data/profile";
 import ButtonLink from "./ButtonLink.astro";
+import { ProfileShaderCard } from "./profile-shader-card";
 
 const showResumeLink = hasResumeAsset();
 ---
@@ -77,6 +78,10 @@ const showResumeLink = hasResumeAsset();
         title="Email Manish Soni"
       />
     </div>
+  </div>
+
+  <div class="mt-16 sm:mt-20">
+    <ProfileShaderCard client:load />
   </div>
 
   <div
