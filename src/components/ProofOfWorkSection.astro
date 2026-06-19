@@ -19,7 +19,7 @@ function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
 
 {
   projects.length > 0 && (
-    <section id="proof" class="border-y border-portfolio-line bg-portfolio-surface">
+    <section id="proof" class="glass-band border-y border-portfolio-line">
       <div class="mx-auto max-w-6xl px-5 py-18 lg:px-8">
         <SectionHeading
           eyebrow="Proof of Work"
@@ -33,7 +33,7 @@ function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
             const badges = project.data.stack.slice(0, 4);
 
             return (
-              <article class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+              <article class="premium-surface surface-hover rounded-lg border border-portfolio-line bg-portfolio-bg p-6">
                 <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
                   {project.data.category ?? "Project"}
                 </p>
@@ -47,7 +47,7 @@ function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
                 {badges.length > 0 && (
                   <ul class="mt-5 flex flex-wrap gap-2">
                     {badges.map((badge) => (
-                      <li class="rounded-md border border-portfolio-accent/15 bg-portfolio-soft px-3 py-1.5 font-mono text-[13px] font-medium text-portfolio-accent-dark">
+                      <li class="glass-chip rounded-md border border-portfolio-accent/15 px-3 py-1.5 font-mono text-[13px] font-medium text-portfolio-accent-dark">
                         {badge}
                       </li>
                     ))}
@@ -61,7 +61,7 @@ function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open live demo for ${project.data.title}`}
-                      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-ink bg-portfolio-ink px-4 text-[14px] font-semibold text-portfolio-bg transition-colors hover:border-portfolio-accent hover:bg-portfolio-accent"
+                      class="glass-control glass-control-primary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-bg transition-colors hover:border-portfolio-accent hover:bg-portfolio-accent"
                     >
                       Live Demo
                     </a>
@@ -73,7 +73,7 @@ function getRepoUrl(project: CollectionEntry<"projects">): string | undefined {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open source repository for ${project.data.title}`}
-                      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+                      class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
                     >
                       Repository
                     </a>

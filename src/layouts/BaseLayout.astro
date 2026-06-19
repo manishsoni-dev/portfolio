@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ShaderAnimation } from "../components/ui/shader-animation";
 import { getAbsoluteUrl, personStructuredData, site } from "../data/site";
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  animatedBackground?: boolean;
 }
 
 const {
@@ -14,6 +16,7 @@ const {
   description = site.description,
   image = site.socialImage,
   noindex = false,
+  animatedBackground = true,
 } = Astro.props;
 
 const canonicalUrl = noindex ? undefined : getAbsoluteUrl(Astro.url.pathname);
@@ -60,12 +63,16 @@ const metadataImageUrl = getAbsoluteUrl(image) ?? image;
     />
   </head>
   <body class="min-h-screen">
+    {animatedBackground && <ShaderAnimation client:load position="fixed" className="z-0" />}
+    <div class="pointer-events-none fixed inset-0 z-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.08),rgba(5,6,8,0.28))]" aria-hidden="true"></div>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-portfolio-ink focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-portfolio-bg focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-portfolio-accent"
     >
       Skip to main content
     </a>
-    <slot />
+    <div class="relative z-10 min-h-screen">
+      <slot />
+    </div>
   </body>
 </html>

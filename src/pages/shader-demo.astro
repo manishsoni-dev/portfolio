@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ShaderAnimationDemo from "../components/ui/shader-animation-demo";
+---
+
+<BaseLayout title="Shader Animation Demo" description="Three.js shader animation component demo." noindex={true} animatedBackground={false}>
+  <main id="main-content" tabindex="-1" class="mx-auto flex min-h-screen max-w-5xl flex-col gap-8 bg-portfolio-bg px-6 py-16">
+    <header class="flex flex-col gap-3">
+      <a href="/" class="text-sm font-medium text-portfolio-accent-dark underline">&larr; Back to home</a>
+      <h1 class="font-display text-3xl font-semibold tracking-tight text-portfolio-ink">
+        Shader Animation
+      </h1>
+      <p class="max-w-2xl text-portfolio-muted">
+        A WebGL fragment-shader animation rendered with three.js, integrated as a
+        shadcn-style UI component at <code>@/components/ui/shader-animation</code>.
+      </p>
+    </header>
+
+    <ShaderAnimationDemo client:only="react" />
+  </main>
+</BaseLayout>
