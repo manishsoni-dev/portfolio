@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import ButtonLink from "../components/ButtonLink.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import TagList from "../components/TagList.astro";
 import { hasResumeAsset, resumeAsset } from "../data/assets";
 import { profile } from "../data/profile";
@@ -29,7 +31,9 @@ const coreSkills = [
   title={`Hire Manish Soni | ${site.title}`}
   description="Recruiter-focused profile for Manish Soni: AI/backend internship roles, top projects, grouped skills, resume, and contact links."
 >
-  <main id="main-content" class="premium-page-bg min-h-screen">
+  <div class="premium-page-bg min-h-screen">
+  <SiteHeader />
+  <main id="main-content">
     <section class="mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:px-8">
       <a
         href="/"
@@ -58,7 +62,7 @@ const coreSkills = [
               aria-label="Download Manish Soni resume"
             />
           ) : (
-            <span class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-5 text-[15px] font-semibold text-portfolio-muted">
+            <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
               Resume coming soon
             </span>
           )}
@@ -69,9 +73,9 @@ const coreSkills = [
       </div>
     </section>
 
-    <section class="border-y border-portfolio-line bg-portfolio-surface">
+    <section class="glass-band border-y border-portfolio-line">
       <div class="mx-auto grid max-w-6xl gap-6 px-5 py-12 lg:grid-cols-3 lg:px-8">
-        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+        <div class="premium-surface rounded-lg border border-portfolio-line bg-portfolio-bg p-6">
           <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
             Current positioning
           </p>
@@ -79,7 +83,7 @@ const coreSkills = [
             {profile.role}
           </p>
         </div>
-        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+        <div class="premium-surface rounded-lg border border-portfolio-line bg-portfolio-bg p-6">
           <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
             Location
           </p>
@@ -87,7 +91,7 @@ const coreSkills = [
             India · Open to remote and India-based internships
           </p>
         </div>
-        <div class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-bg p-6">
+        <div class="premium-surface rounded-lg border border-portfolio-line bg-portfolio-bg p-6">
           <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
             Strongest proof
           </p>
@@ -108,7 +112,7 @@ const coreSkills = [
         </h2>
         <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {profile.targetRoles.map((role) => (
-            <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-4 py-3 text-[15px] font-semibold text-portfolio-ink">
+            <li class="glass-chip rounded-md border border-portfolio-line px-4 py-3 text-[15px] font-semibold text-portfolio-ink">
               {role}
             </li>
           ))}
@@ -116,7 +120,7 @@ const coreSkills = [
       </div>
     </section>
 
-    <section class="border-y border-portfolio-line bg-portfolio-surface">
+    <section class="glass-band border-y border-portfolio-line">
       <div class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
         <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
           Core skills
@@ -134,7 +138,7 @@ const coreSkills = [
       </p>
       <div class="mt-6 grid gap-5 lg:grid-cols-3">
         {projects.map((project) => (
-          <article class="premium-surface rounded-xl border border-portfolio-line bg-portfolio-surface p-6">
+          <article class="premium-surface surface-hover rounded-lg border border-portfolio-line bg-portfolio-surface p-6">
             <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
               {project.data.category}
             </p>
@@ -146,7 +150,7 @@ const coreSkills = [
             </p>
             <a
               href={`/projects/${project.id}/`}
-              class="mt-5 inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+              class="glass-control glass-control-secondary mt-5 inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-ink transition-colors hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
             >
               View Case Study
             </a>
@@ -155,4 +159,6 @@ const coreSkills = [
       </div>
     </section>
   </main>
+  <SiteFooter />
+  </div>
 </BaseLayout>

@@ -2,35 +2,38 @@
 import { hasResumeAsset, resumeAsset } from "../data/assets";
 import { profile } from "../data/profile";
 import ButtonLink from "./ButtonLink.astro";
-import { ProfileShaderCard } from "./profile-shader-card";
 
 const showResumeLink = hasResumeAsset();
 ---
 
-<section class="premium-section mx-auto max-w-6xl px-5 py-24 sm:py-32 lg:px-8 lg:py-36">
-  <div class="relative max-w-5xl">
+<section class="relative isolate min-h-[min(720px,74svh)] overflow-hidden border-b border-white/10 bg-black/10">
+  <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.08)_0%,rgba(5,6,8,0.28)_54%,rgba(5,6,8,0.94)_100%)]"></div>
+  <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,8,0.66)_0%,rgba(5,6,8,0.12)_48%,rgba(5,6,8,0.5)_100%)]"></div>
+
+  <div class="relative z-10 mx-auto flex min-h-[min(720px,74svh)] max-w-6xl flex-col justify-center px-5 py-12 sm:py-16 lg:px-8">
+    <div class="max-w-4xl">
     <p
-      class="mb-7 inline-flex items-center gap-2 rounded-full border border-portfolio-accent/20 bg-portfolio-soft px-4 py-2 font-mono text-[13px] font-semibold text-portfolio-accent-dark shadow-[0_1px_0_rgba(255,255,255,0.78)_inset,0_10px_22px_rgba(20,20,20,0.05)]"
+      class="glass-chip mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-[12px] font-semibold text-white/80"
     >
       <span class="status-dot" aria-hidden="true"></span>
       {profile.availability}
     </p>
 
     <h1
-      class="font-display text-6xl font-bold leading-[0.98] tracking-normal text-portfolio-ink sm:text-7xl lg:text-8xl"
+      class="font-display text-5xl font-bold leading-[0.96] tracking-normal text-white sm:text-7xl lg:text-8xl"
     >
       {profile.name}
     </h1>
 
-    <p class="mt-7 max-w-3xl text-lg leading-8 text-portfolio-muted sm:text-xl sm:leading-9">
+    <p class="mt-7 max-w-3xl text-lg leading-8 text-white/78 sm:text-xl sm:leading-9">
       {profile.headline}
     </p>
 
-    <p class="mt-4 max-w-2xl font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+    <p class="mt-4 max-w-2xl font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent-soft">
       {profile.role}
     </p>
 
-    <div class="mt-10 flex flex-col flex-wrap gap-3 sm:flex-row">
+    <div class="mt-8 grid max-w-md grid-cols-2 gap-3">
       <ButtonLink
         href="#projects"
         label="View Projects"
@@ -49,61 +52,34 @@ const showResumeLink = hasResumeAsset();
       )}
       {!showResumeLink && (
         <span
-          class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-5 text-[15px] font-semibold text-portfolio-muted"
+          class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted"
           aria-label="Resume coming soon"
           title="Resume coming soon"
         >
           Resume coming soon
         </span>
       )}
-      <ButtonLink
-        href={profile.links.github}
-        label="GitHub"
-        external
-        aria-label="Visit Manish Soni's GitHub"
-        title="GitHub"
-      />
-      <ButtonLink
-        href={profile.links.linkedin}
-        label="LinkedIn"
-        external
-        aria-label="Visit Manish Soni's LinkedIn"
-        title="LinkedIn"
-      />
-      <ButtonLink
-        href={profile.links.email}
-        label="Email Me"
-        external={false}
-        aria-label="Email Manish Soni"
-        title="Email Manish Soni"
-      />
     </div>
-  </div>
+    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-[14px] font-semibold text-white/72">
+      <a class="transition-colors hover:text-portfolio-accent" href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="transition-colors hover:text-portfolio-accent" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="transition-colors hover:text-portfolio-accent" href={profile.links.email}>Email me</a>
+    </div>
+    </div>
 
-  <div class="mt-16 sm:mt-20">
-    <ProfileShaderCard client:load />
-  </div>
-
-  <div
-    class="premium-surface relative mt-24 grid gap-6 rounded-xl border border-portfolio-line bg-portfolio-surface px-5 py-6 text-[15px] text-portfolio-muted sm:grid-cols-3 sm:px-7 sm:py-7"
-  >
-    <p>
-      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
-        Education
-      </span>
-      <span class="mt-2 block font-medium text-portfolio-ink">{profile.education}</span>
-    </p>
-    <p>
-      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
-        Location
-      </span>
-      <span class="mt-2 block font-medium text-portfolio-ink">{profile.location}</span>
-    </p>
-    <p>
-      <span class="block font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
-        Positioning
-      </span>
-      <span class="mt-2 block font-medium text-portfolio-ink">Python AI Developer</span>
-    </p>
+    <dl class="mt-8 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 border-t border-white/16 pt-5 text-sm sm:mt-10 sm:grid-cols-3 sm:pt-6">
+      <div>
+        <dt class="font-mono text-[11px] uppercase text-white/45">Education</dt>
+        <dd class="mt-2 font-semibold text-white/88">{profile.education}</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-[11px] uppercase text-white/45">Location</dt>
+        <dd class="mt-2 font-semibold text-white/88">{profile.location}</dd>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <dt class="font-mono text-[11px] uppercase text-white/45">Focus</dt>
+        <dd class="mt-2 font-semibold text-white/88">Applied AI systems</dd>
+      </div>
+    </dl>
   </div>
 </section>

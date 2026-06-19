@@ -60,11 +60,13 @@ const textExtensions = new Set([
   ".html",
   ".js",
   ".json",
+  ".jsx",
   ".md",
   ".mdx",
   ".mjs",
   ".svg",
   ".ts",
+  ".tsx",
   ".txt",
   ".xml",
 ]);

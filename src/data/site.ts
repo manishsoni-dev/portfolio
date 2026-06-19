@@ -5,7 +5,7 @@ export const site = {
   description:
     "B.Tech CSE Graduate from India building AI applications, LLM workflows, backend APIs, developer tools, and ML/data projects.",
   language: "en",
-  themeColor: "#F7F4EC",
+  themeColor: "#07090D",
   socialImage: "/images/social-preview.png",
   socialImageAlt:
     "Manish Soni portfolio preview for Python AI Developer, LLM Applications, and Backend APIs.",

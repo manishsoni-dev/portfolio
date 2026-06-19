@@ -21,7 +21,7 @@ const statusLabels =
 
 <article
   class:list={[
-    "premium-card-shadow group rounded-xl border bg-portfolio-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-portfolio-accent/35 hover:shadow-[0_26px_62px_rgba(20,20,20,0.095)] sm:p-8",
+    "premium-card-shadow surface-hover group rounded-lg border p-6 transition-all duration-200 hover:border-portfolio-accent/35 hover:shadow-[0_26px_62px_rgba(0,0,0,0.32)] sm:p-8",
     project.data.featured ? "border-portfolio-accent/35" : "border-portfolio-line",
   ]}
 >
@@ -65,7 +65,7 @@ const statusLabels =
 
   <ul class="mt-6 flex flex-wrap gap-2">
     {statusLabels.map((label) => (
-      <li class="rounded-md border border-portfolio-line bg-portfolio-bg px-3 py-1.5 font-mono text-[13px] font-semibold text-portfolio-muted">
+      <li class="glass-chip rounded-md border border-portfolio-line px-3 py-1.5 font-mono text-[13px] font-semibold text-portfolio-muted">
         {label}
       </li>
     ))}
@@ -79,12 +79,12 @@ const statusLabels =
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Open live demo experience for ${project.data.title}`}
-          class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-ink bg-portfolio-ink px-4 text-[14px] font-semibold text-portfolio-bg transition-all duration-200 hover:border-portfolio-accent hover:bg-portfolio-accent"
+          class="glass-control glass-control-primary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-bg transition-all duration-200 hover:border-portfolio-accent hover:bg-portfolio-accent"
         >
           Live Demo Experience
         </a>
       ) : project.data.featured || repoUrl ? (
-        <span class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-4 text-[14px] font-semibold text-portfolio-muted">
+        <span class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-muted">
           Demo coming soon
         </span>
       ) : null
@@ -97,12 +97,12 @@ const statusLabels =
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Open source repository for ${project.data.title}`}
-          class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+          class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
         >
           Source Repository
         </a>
       ) : project.data.featured ? (
-        <span class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-4 text-[14px] font-semibold text-portfolio-muted">
+        <span class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-muted">
           Source repository coming soon
         </span>
       ) : null
@@ -110,7 +110,7 @@ const statusLabels =
 
     <a
       href={`/projects/${project.id}/`}
-      class="inline-flex min-h-11 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-surface px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
+      class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-ink transition-all duration-200 hover:border-portfolio-accent/40 hover:bg-portfolio-soft hover:text-portfolio-accent-dark"
       aria-label={`View case study details for ${project.data.title}`}
     >
       View Case Study / Details

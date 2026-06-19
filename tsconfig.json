@@ -8,15 +8,11 @@
     "dist"
   ],
   "compilerOptions": {
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "types": [
-      "node"
-    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }

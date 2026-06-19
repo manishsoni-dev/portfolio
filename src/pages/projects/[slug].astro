@@ -3,6 +3,8 @@ import { getCollection, render } from "astro:content";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import ButtonLink from "../../components/ButtonLink.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
 import TagList from "../../components/TagList.astro";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -74,7 +76,9 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <main id="main-content" class="premium-page-bg min-h-screen">
+  <div class="premium-page-bg min-h-screen">
+  <SiteHeader />
+  <main id="main-content">
     <article class="mx-auto max-w-3xl px-5 py-14 sm:py-20 lg:px-8">
       <a
         href="/"
@@ -83,7 +87,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
         Back to portfolio
       </a>
 
-      <header class="premium-surface mt-10 rounded-xl border border-portfolio-line bg-portfolio-surface p-6 sm:p-8">
+      <header class="premium-surface mt-10 rounded-lg border border-portfolio-line bg-portfolio-surface p-6 sm:p-8">
         <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
           Project
         </p>
@@ -130,7 +134,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
             liveDemoUrl ? (
               <ButtonLink href={liveDemoUrl} label="Live Demo Experience" variant="primary" external />
             ) : (
-              <span class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-5 text-[15px] font-semibold text-portfolio-muted">
+              <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
                 Demo coming soon
               </span>
             )
@@ -140,7 +144,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
             repoUrl ? (
               <ButtonLink href={repoUrl} label="Source Repository" external />
             ) : (
-              <span class="inline-flex min-h-12 items-center justify-center rounded-md border border-portfolio-line bg-portfolio-bg px-5 text-[15px] font-semibold text-portfolio-muted">
+              <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
                 Source repository coming soon
               </span>
             )
@@ -160,7 +164,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
       </div>
 
       {hasProjectProof && (
-          <section class="mt-12 rounded-xl border border-portfolio-line bg-portfolio-surface p-6 sm:p-8">
+          <section class="mt-14 border-t border-portfolio-line pt-10">
             <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
               Project Proof
             </p>
@@ -171,7 +175,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
             {uniqueProofMedia.length > 0 && (
               <div class="mt-6 grid gap-6">
                 {uniqueProofMedia.map((screenshot) => (
-                <figure class="premium-surface overflow-hidden rounded-xl border border-portfolio-line bg-portfolio-surface">
+                <figure class="premium-surface overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface">
                   <img
                     src={screenshot.src}
                     alt={screenshot.alt}
@@ -203,4 +207,6 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
       )}
     </article>
   </main>
+  <SiteFooter />
+  </div>
 </BaseLayout>
