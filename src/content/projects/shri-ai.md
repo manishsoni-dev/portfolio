@@ -4,6 +4,13 @@ summary: "A local-first, citation-grounded spiritual reflection assistant built 
 category: "GenAI / RAG"
 problem: "Generic AI assistants can produce unsupported spiritual claims, hide source uncertainty, and depend on hosted model APIs."
 built: "A Next.js application with authenticated workspaces, reviewed scripture ingestion, hybrid retrieval, citation validation, abstention, local Ollama chat and embeddings, and faster-whisper voice input."
+features:
+  - Local Ollama chat and embeddings
+  - Authenticated workspace conversations
+  - Reviewed scripture with source provenance
+  - Full-text and pgvector hybrid retrieval
+  - Citation validation and safe abstention
+  - Private faster-whisper voice input
 outcome: "A portfolio-grade local-first MVP with evaluation tooling and release gates. Production validation and broader source review remain in progress."
 role: "Product strategy, AI architecture, full-stack engineering, RAG evaluation, and local inference integration."
 stack:

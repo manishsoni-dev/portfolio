@@ -7,6 +7,7 @@ interface Props {
 
 const { project } = Astro.props;
 const cardLabels = project.data.labels.slice(0, 5);
+const features = project.data.features?.slice(0, 6) ?? [];
 const liveDemoUrl = project.data.liveDemoUrl ?? project.data.demo;
 const repoUrl = project.data.repoUrl ?? project.data.repository;
 const statusLabels =
@@ -60,6 +61,27 @@ const statusLabels =
           {project.data.built}
         </p>
       )}
+
+      {
+        features.length > 0 && (
+          <div class="mt-6 border-t border-portfolio-line pt-5">
+            <p class="font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-portfolio-accent">
+              Key Features
+            </p>
+            <ul class="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+              {features.map((feature) => (
+                <li class="flex items-start gap-3 text-[14px] leading-6 text-portfolio-muted">
+                  <span
+                    aria-hidden="true"
+                    class="mt-[9px] size-1.5 shrink-0 rounded-full bg-portfolio-accent"
+                  />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
     </div>
   </div>
 
