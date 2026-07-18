@@ -21,6 +21,7 @@ const requiredSnippets = [
   "Currently targeting",
   "Hire me",
   "ArchGuard",
+  "Shri AI",
   "Aidssist",
   "Aegis",
 ];
@@ -53,6 +54,7 @@ const forbiddenSnippets = [
   "paid users",
   "full SaaS",
   "senior-level architecture ownership",
+  "Shree.ai — LLM Tool Finder",
 ];
 const textExtensions = new Set([
   ".astro",
@@ -269,10 +271,10 @@ function normalizeOptionalUrl(url) {
 function verifyProjectOrder(html) {
   const expectedOrder = [
     "ArchGuard",
+    "Shri AI",
     "Aidssist V3",
     "Aegis",
     "AI Fraud Detection System",
-    "Shree.ai",
   ];
   const positions = expectedOrder.map((title) => ({
     title,

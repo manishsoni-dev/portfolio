@@ -22,6 +22,7 @@ const projects = defineCollection({
     category: z.string().optional(),
     problem: z.string().optional(),
     built: z.string().optional(),
+    features: z.array(z.string()).default([]),
     outcome: z.string().optional(),
     role: z.string().optional(),
     stack: z.array(z.string()).default([]),
