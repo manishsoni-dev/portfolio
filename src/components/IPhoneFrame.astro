@@ -1,0 +1,82 @@
+<div class="iphone-frame">
+  <span class="iphone-buttons" aria-hidden="true"></span>
+  <div class="iphone-screen">
+    <slot />
+    <span class="iphone-island" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style>
+  .iphone-frame {
+    position: relative;
+    width: min(100%, 20rem);
+    margin-inline: auto;
+    padding: 7px;
+    border: 1px solid #8a8c90;
+    border-radius: 17% / 8%;
+    background: linear-gradient(120deg, #96999e, #24262b 10%, #101114 48%, #666970 90%, #b1b3b7);
+    box-shadow: inset 0 0 0 2px #34363b, 0 20px 40px -20px rgb(0 0 0 / 65%);
+  }
+
+  .iphone-screen {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #090a0c;
+    border-radius: 15% / 7%;
+    background: #090a0c;
+  }
+
+  .iphone-screen :global(img),
+  .iphone-screen :global(video) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1179 / 2556;
+    object-fit: contain;
+  }
+
+  .iphone-island {
+    position: absolute;
+    top: 1.4%;
+    left: 50%;
+    width: 30%;
+    height: 4.3%;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: #08090b;
+    pointer-events: none;
+  }
+
+  .iphone-island::after {
+    content: "";
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    width: 10%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #17283b, #07090e 70%);
+  }
+
+  .iphone-buttons {
+    position: absolute;
+    top: 22%;
+    left: -3px;
+    width: 3px;
+    height: 6%;
+    border-radius: 2px 0 0 2px;
+    background: #676a70;
+    box-shadow: 0 51px 0 #676a70;
+  }
+
+  .iphone-frame::after {
+    content: "";
+    position: absolute;
+    top: 27%;
+    right: -3px;
+    width: 3px;
+    height: 8%;
+    border-radius: 0 2px 2px 0;
+    background: #676a70;
+  }
+</style>

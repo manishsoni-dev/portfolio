@@ -95,7 +95,7 @@ Later development notes from 12–13 October still leave dose-deletion regressio
 
 The evidence below was captured on 14 October 2026 from the actual SwiftUI app running in a dedicated iPhone 16 simulator on iOS 18.0. All patient, medication, provider, and appointment information comes from an existing synthetic test fixture. The fixture uses a fixed September reference date for Today; other screens also show seeded and capture-time dates.
 
-The 90-second silent walkthrough starts on Today, records a medication as taken, inspects its resulting dose state and history, and opens an appointment. Screenshots additionally show medication management, care tasks, and the health-record timeline. These are real simulator captures, not mockups or an interactive web version of the iOS app.
+The 90-second silent walkthrough starts on Today, records a medication as taken, inspects its resulting dose state and history, and opens an appointment. Screenshots additionally show medication management, care tasks, and the health-record timeline. The original captures are presented inside a decorative iPhone frame with no background outside the device. The app interface is unchanged; this is simulator evidence, not a physical-device recording or an interactive web version of the iOS app.
 
 A fresh simulator build succeeded for the captured source on 14 October. This focused visual walkthrough does not replace the full automated suite, signed-device checks, notification-delivery testing, or connected sync acceptance. The source repository remains private.
 

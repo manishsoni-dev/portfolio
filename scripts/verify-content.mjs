@@ -428,8 +428,9 @@ function verifyMediaAssets() {
   }
 
   const carePage = readIfExists(join(root, "dist/projects/care-momentum/index.html"));
-  if (!carePage.includes('/videos/projects/care-momentum/walkthrough.mp4') || !carePage.includes('object-contain')) {
-    failures.push("Care Momentum proof page is missing its walkthrough or portrait containment.");
+  const framedCaptures = carePage.match(/class="iphone-screen\b/g) ?? [];
+  if (!carePage.includes('/videos/projects/care-momentum/walkthrough.mp4') || framedCaptures.length !== 7) {
+    failures.push("Care Momentum proof page must retain six framed screenshots and its framed walkthrough.");
   }
 
   for (const brokenDestination of [
