@@ -21,6 +21,7 @@ const requiredSnippets = [
   "Currently targeting",
   "Hire me",
   "ArchGuard",
+  "Care Momentum",
   "Shri AI",
   "Aidssist",
   "Aegis",
@@ -305,7 +306,6 @@ function verifyArchGuardProofLinks(html) {
   const requiredLinks = [
     "https://demo-web-delta-five.vercel.app",
     "https://github.com/manishsoni-dev/ArchGuard",
-    "https://arch-guard-1--manishsoni-dev.replit.app",
     "https://github.com/manishsoni-dev/ArchGuard/pull/8",
   ];
 
@@ -406,6 +406,12 @@ function verifyMediaAssets() {
     "public/images/projects/archguard/proof-surface.png",
     "public/images/projects/archguard/proof-pr.png",
     "public/images/projects/aidssist-v3/demo-dashboard.png",
+    "public/images/projects/care-momentum/today.webp",
+    "public/images/projects/care-momentum/medications.webp",
+    "public/images/projects/care-momentum/medication-detail.webp",
+    "public/images/projects/care-momentum/appointment.webp",
+    "public/images/projects/care-momentum/care-tasks.webp",
+    "public/images/projects/care-momentum/health-record.webp",
   ];
 
   for (const mediaPath of requiredMedia) {
@@ -413,6 +419,26 @@ function verifyMediaAssets() {
 
     if (!existsSync(absolutePath) || statSync(absolutePath).size < 10_000) {
       failures.push(`Required proof media is missing or too small: ${mediaPath}`);
+    }
+  }
+
+  const videoPath = join(root, "public/videos/projects/care-momentum/walkthrough.mp4");
+  if (!existsSync(videoPath) || statSync(videoPath).size < 10_000 || statSync(videoPath).size > 5_000_000) {
+    failures.push("Care Momentum walkthrough must be present and remain a modest local video asset.");
+  }
+
+  const carePage = readIfExists(join(root, "dist/projects/care-momentum/index.html"));
+  if (!carePage.includes('/videos/projects/care-momentum/walkthrough.mp4') || !carePage.includes('object-contain')) {
+    failures.push("Care Momentum proof page is missing its walkthrough or portrait containment.");
+  }
+
+  for (const brokenDestination of [
+    "https://arch-guard-1--manishsoni-dev.replit.app",
+    "https://github.com/manishsoni-dev/ai-fraud-detection",
+    "https://www.youtube.com/@hahamanish",
+  ]) {
+    if (builtCorpus.includes(brokenDestination)) {
+      failures.push(`Previously verified unavailable destination is still published: ${brokenDestination}`);
     }
   }
 }

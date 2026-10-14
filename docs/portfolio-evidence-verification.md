@@ -1,0 +1,30 @@
+# Portfolio evidence verification — 14 October 2026
+
+## Capture provenance
+
+- Continued PR #6 on `codex/portfolio-care-momentum-evidence`; base `main` at `efa105bcdf20d17dc08c5bf524a10aaff85b4c26`.
+- Actual Care Momentum development checkout identified from Git history: `codex/today-action-execution-reliability`, commit `f503381`. Application source and Xcode project had no uncommitted changes. Existing uncommitted tests, reports, and evidence were preserved.
+- Fresh unsigned Debug simulator build succeeded using Xcode. Build artifacts and logs stayed outside both repositories.
+- Created a separate iPhone 16 / iOS 18.0 simulator. Launched the existing `-ui-testing-medication-scenario today` fixture; all patient, provider, medication, and appointment information is synthetic. No production account, personal record, connected sync, signing change, or app feature modification was involved.
+- Used Xcode Device Hub to interact with the app and `simctl io screenshot` to capture the simulator display directly. Visually inspected all six PNGs before lossless WebP compression at their original 1179 × 2556 resolution. No cropping, interface reconstruction, or generated mockups.
+- Captured Today; Care Plan → Medications; medication detail after choosing Taken; appointment detail; Care Plan → Care Tasks; Health → View Timeline. The fixture uses a fixed September reference date; some record dates reflect capture time.
+- Observed Morning medication change from Scheduled to Taken on Today, then inspected the resulting Taken dose and original history. No medication correction/deletion, notification-delivery, or cloud-sync behavior is asserted by this walkthrough.
+- Recorded the real simulator display continuously. The published silent H.264 MP4 is 90 seconds, 540 × 1172, 764,746 bytes, with streaming metadata at the start. Compressed and trimmed the end to 90 seconds; retained the actual action order, with no invented intermediate states. Sampled start, medication detail, and final appointment frames; decoded the entire published file successfully.
+
+## Portfolio verification
+
+- `npm ci` succeeded. `PUBLIC_SITE_URL=https://manishsoni-dev.vercel.app npm run verify` passed: 34 Astro files, zero errors/warnings/hints, 11 pages, content integrity verified.
+- Browser checks on `/`, `/hire-me/`, `/projects/`, and `/projects/care-momentum/` at **390 × 844** and **1440 × 1000 CSS pixels**: no horizontal overflow; headings, cards, text, and controls remained readable. Visually inspected saved previews. All six images loaded with portrait containment and uncropped source proportions.
+- Walkthrough link reaches the embedded player; metadata reports 90 seconds and keyboard playback advances time without an error. The video remains user-controlled with no autoplay.
+- Keyboard skip link focuses `main-content`; tabbing between case-study controls shows a visible focus outline.
+- Checked every generated root-relative link/media destination against the built files: no missing destinations. Resume PDF remains byte-for-byte unchanged (SHA-256 `d30183cf5f77709a8e723b7725f943a315fc589012f1ec8b1a3d6992f2550a0a`); mail links target the existing address.
+- Compared with a separately built base branch. Global styles, layouts, fonts, configuration, animations, and backgrounds are unchanged. Browser typography remains DM Sans/Syne with the same background color; animated backgrounds can differ between captures by frame. Other projects retain their original landscape image treatment.
+- Public ArchGuard demo/source/proof, Aidssist demo/source, Shri AI source, GitHub profile, Instagram, Facebook, and X returned successful responses. ArchGuard's old Replit API, the fraud project source, and the YouTube handle returned 404; unavailable project links were labeled and the broken YouTube entry omitted. LinkedIn throttled automated requests (429), so its existing destination is retained without claiming a fresh successful check.
+- A separate reviewer found no material findings in the Care Momentum media/content/template patch. The final build includes the later paragraph about open release gates. `git diff --check` passed.
+
+## Limits and publication gate
+
+- The app remains in development / pre-beta. Its 23 September test counts remain explicitly historical. Current dose-deletion regressions, physical-device/connected acceptance, and final release checks remain open; no full current app test pass is claimed.
+- The portfolio's existing dependency audit reports 14 advisories, including one critical. Dependencies were not changed by this content/evidence update. This is recorded as an existing maintenance issue, not remediated here.
+- Education remains neutral B.Tech CSE because completion was not independently verified. The PDF resume was not rewritten.
+- Owner approval of the exact final PR is required before merging. Production deployment and the live URL must be checked against the resulting merge commit after approval; successful preview deployment alone does not complete that gate.

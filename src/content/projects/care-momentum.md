@@ -33,6 +33,26 @@ statusLabels:
   - Case Study
 demoUnavailableLabel: "Public demo not available"
 repoUnavailableLabel: "Private repository"
+demoVideoUrl: "/videos/projects/care-momentum/walkthrough.mp4"
+screenshotUrls:
+  - src: "/images/projects/care-momentum/today.webp"
+    alt: "Care Momentum Today screen for synthetic patient Taylor, showing medication actions and a pending blood-pressure care task."
+    caption: "Today — medication and care-task actions for synthetic patient Taylor Patient, using the existing fixed-date test fixture."
+  - src: "/images/projects/care-momentum/medications.webp"
+    alt: "Care Momentum medication list showing four synthetic active medications, their strengths, doses, and daily frequency."
+    caption: "Medication management — four active synthetic medications with strength, dose, and frequency, reached from Care Plan."
+  - src: "/images/projects/care-momentum/medication-detail.webp"
+    alt: "Morning medication detail showing the dose marked Taken, its recorded status history, and the eight o'clock schedule."
+    caption: "Dose detail — after choosing Taken on Today, the medication shows Taken and its original recorded status history."
+  - src: "/images/projects/care-momentum/appointment.webp"
+    alt: "Synthetic cardiology appointment detail showing its scheduled time, time zone, location, and disabled reminder."
+    caption: "Appointment detail — scheduled time, location, and reminder state for a synthetic cardiology appointment. Reminder delivery was not tested in this capture."
+  - src: "/images/projects/care-momentum/care-tasks.webp"
+    alt: "Care Momentum care-task list showing pending blood-pressure and undated tasks, plus skipped and completed entries."
+    caption: "Care tasks — pending and recorded tasks for the same synthetic patient, including completed and skipped states."
+  - src: "/images/projects/care-momentum/health-record.webp"
+    alt: "Patient-scoped health-record timeline with search and synthetic medication, care-task, and appointment entries."
+    caption: "Health Record — a searchable patient-scoped timeline with synthetic medication, care-task, and appointment entries."
 status: "in-progress"
 featured: true
 order: 1.5
@@ -69,10 +89,16 @@ A repository report dated 23 September 2026 records 676 passing Swift/SwiftData 
 
 The same report leaves connected acceptance blocked. Signed-device verification, connected authentication/sync acceptance, and release/privacy preparation remain separate release gates. I do not treat a passing local test suite as an App Store release.
 
+Later development notes from 12–13 October still leave dose-deletion regression checks, physical-device and connected acceptance, and final release verification open. The captured medication action does not establish that those separate gates pass.
+
 ## Screenshots and walkthrough
 
-Public screenshots and a walkthrough are not yet available on this page. The source repository is private. This case study documents the implementation and its current limits; it is not an interactive app demo.
+The evidence below was captured on 14 October 2026 from the actual SwiftUI app running in a dedicated iPhone 16 simulator on iOS 18.0. All patient, medication, provider, and appointment information comes from an existing synthetic test fixture. The fixture uses a fixed September reference date for Today; other screens also show seeded and capture-time dates.
+
+The 90-second silent walkthrough starts on Today, records a medication as taken, inspects its resulting dose state and history, and opens an appointment. Screenshots additionally show medication management, care tasks, and the health-record timeline. These are real simulator captures, not mockups or an interactive web version of the iOS app.
+
+A fresh simulator build succeeded for the captured source on 14 October. This focused visual walkthrough does not replace the full automated suite, signed-device checks, notification-delivery testing, or connected sync acceptance. The source repository remains private.
 
 ## Current focus
 
-Verifying daily-action reliability and completing the release gates before a public beta. The next portfolio evidence will be real app captures using synthetic patient data, followed by a short walkthrough of a complete daily-care workflow.
+Verifying daily-action reliability and completing the release gates before a public beta. The app remains in development / pre-beta; the captures demonstrate the observed local flows without claiming launch readiness or medical outcomes.

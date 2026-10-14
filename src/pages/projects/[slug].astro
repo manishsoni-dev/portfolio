@@ -28,6 +28,10 @@ const repoUrl = project.data.repoUrl ?? project.data.repository;
 const apiUrl = project.data.apiUrl ?? project.data.liveApi;
 const proofUrl = project.data.proofUrl ?? project.data.proof;
 const demoVideoUrl = project.data.demoVideoUrl ?? project.data.videoUrl;
+const isCareMomentum = project.id === "care-momentum";
+const localVideoUrl = demoVideoUrl?.startsWith("/videos/") && isRenderableAsset(demoVideoUrl)
+  ? demoVideoUrl
+  : undefined;
 const proofLinks = [
   liveDemoUrl && { href: liveDemoUrl, label: "Live Demo" },
   repoUrl && { href: repoUrl, label: "Repository" },
@@ -151,8 +155,13 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
           }
 
           {apiUrl && <ButtonLink href={apiUrl} label="Live API" external />}
+          {project.data.apiUnavailableLabel && !apiUrl && (
+            <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
+              {project.data.apiUnavailableLabel}
+            </span>
+          )}
           {proofUrl && <ButtonLink href={proofUrl} label="Proof Link" external />}
-          {demoVideoUrl && <ButtonLink href={demoVideoUrl} label="Video" external />}
+          {demoVideoUrl && <ButtonLink href={localVideoUrl ? "#walkthrough" : demoVideoUrl} label={localVideoUrl ? "Watch Walkthrough" : "Video"} external={!localVideoUrl} />}
           <ButtonLink href="/#projects" label="Back to Projects" />
         </div>
 
@@ -173,14 +182,18 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
             </h2>
 
             {uniqueProofMedia.length > 0 && (
-              <div class="mt-6 grid gap-6">
+              <div class:list={["mt-6 grid gap-6", isCareMomentum && "sm:grid-cols-2"]}>
                 {uniqueProofMedia.map((screenshot) => (
                 <figure class="premium-surface overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface">
                   <img
                     src={screenshot.src}
                     alt={screenshot.alt}
                     loading="lazy"
-                    class="aspect-video w-full bg-portfolio-bg object-cover"
+                    class={isCareMomentum
+                      ? "mx-auto h-auto w-full max-w-sm bg-portfolio-bg object-contain"
+                      : "aspect-video w-full bg-portfolio-bg object-cover"}
+                    width={isCareMomentum ? 1179 : undefined}
+                    height={isCareMomentum ? 2556 : undefined}
                   />
                   <figcaption class="border-t border-portfolio-line px-5 py-4 text-[15px] leading-7 text-portfolio-muted">
                     {screenshot.caption}
@@ -190,10 +203,28 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               </div>
             )}
 
-            {demoVideoUrl && (
-              <div class="mt-6">
-                <ButtonLink href={demoVideoUrl} label="Demo Video" external />
-              </div>
+            {localVideoUrl ? (
+              <figure id="walkthrough" class="premium-surface mt-6 overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface">
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster={isCareMomentum ? "/images/projects/care-momentum/today.webp" : undefined}
+                  aria-label={`${project.data.title} walkthrough`}
+                  class="mx-auto h-auto w-full max-w-sm bg-portfolio-bg object-contain"
+                >
+                  <source src={localVideoUrl} type="video/mp4" />
+                  <a href={localVideoUrl}>Download the walkthrough</a>
+                </video>
+                <figcaption class="border-t border-portfolio-line px-5 py-4 text-[15px] leading-7 text-portfolio-muted">
+                  {isCareMomentum && "90-second simulator recording with synthetic patient data: Today, recording a medication as taken, dose details, and an appointment. Silent walkthrough; no narration."}
+                  {" "}<a href={localVideoUrl} class="underline underline-offset-4">Open video</a>
+                </figcaption>
+              </figure>
+            ) : demoVideoUrl && (
+                <div class="mt-6">
+                  <ButtonLink href={demoVideoUrl} label="Demo Video" external />
+                </div>
             )}
 
             {proofLinks.length > 0 && (
