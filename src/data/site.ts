@@ -3,7 +3,7 @@ import { profile } from "./profile";
 export const site = {
   title: "Manish Soni | Python AI Developer · LLM Applications · Backend APIs",
   description:
-    "B.Tech CSE Graduate from India building AI applications, LLM workflows, backend APIs, developer tools, and ML/data projects.",
+    "Developer from India building AI applications, backend APIs, and developer tools, alongside Care Momentum, a native SwiftUI iOS app in development.",
   language: "en",
   themeColor: "#07090D",
   socialImage: "/images/social-preview.png",
@@ -59,6 +59,6 @@ export const personStructuredData = {
   ],
   alumniOf: {
     "@type": "EducationalOrganization",
-    name: "B.Tech CSE Graduate",
+    name: "B.Tech CSE",
   },
 } as const;

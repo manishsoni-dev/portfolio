@@ -39,7 +39,7 @@ repoUrl: "https://github.com/manishsoni-dev/ShriAI"
 status: "in-progress"
 featured: true
 draft: false
-order: 1
+order: 2.5
 published: 2026-07-10
 ---
 

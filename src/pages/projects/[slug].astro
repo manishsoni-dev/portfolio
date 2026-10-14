@@ -135,7 +135,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               <ButtonLink href={liveDemoUrl} label="Live Demo Experience" variant="primary" external />
             ) : (
               <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
-                Demo coming soon
+                {project.data.demoUnavailableLabel ?? "Demo coming soon"}
               </span>
             )
           }
@@ -145,7 +145,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               <ButtonLink href={repoUrl} label="Source Repository" external />
             ) : (
               <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
-                Source repository coming soon
+                {project.data.repoUnavailableLabel ?? "Source repository coming soon"}
               </span>
             )
           }

@@ -107,7 +107,7 @@ const statusLabels =
         </a>
       ) : project.data.featured || repoUrl ? (
         <span class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-muted">
-          Demo coming soon
+          {project.data.demoUnavailableLabel ?? "Demo coming soon"}
         </span>
       ) : null
     }
@@ -125,7 +125,7 @@ const statusLabels =
         </a>
       ) : project.data.featured ? (
         <span class="glass-control glass-control-secondary inline-flex min-h-11 items-center justify-center rounded-md border px-4 text-[14px] font-semibold text-portfolio-muted">
-          Source repository coming soon
+          {project.data.repoUnavailableLabel ?? "Source repository coming soon"}
         </span>
       ) : null
     }

@@ -8,7 +8,7 @@ const requiredSnippets = [
   "https://www.linkedin.com/in/manishsoni-dev",
   "mmanishsoni70@gmail.com",
   "India",
-  "B.Tech CSE Graduate",
+  "B.Tech CSE",
   "Python AI Developer",
   "LLM Applications",
   "Backend APIs",
@@ -269,16 +269,18 @@ function normalizeOptionalUrl(url) {
 }
 
 function verifyProjectOrder(html) {
+  const projectSection = html.slice(html.indexOf('id="projects"'));
   const expectedOrder = [
     "ArchGuard",
-    "Shri AI",
+    "Care Momentum",
     "Aidssist V3",
+    "Shri AI",
     "Aegis",
     "AI Fraud Detection System",
   ];
   const positions = expectedOrder.map((title) => ({
     title,
-    index: html.indexOf(title),
+    index: projectSection.indexOf(title),
   }));
 
   for (const { title, index } of positions) {

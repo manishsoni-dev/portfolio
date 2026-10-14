@@ -30,6 +30,8 @@ const projects = defineCollection({
     statusLabels: z.array(z.string()).default([]),
     repository: z.url().optional(),
     demo: z.url().optional(),
+    demoUnavailableLabel: z.string().optional(),
+    repoUnavailableLabel: z.string().optional(),
     liveApi: z.url().optional(),
     proof: z.url().optional(),
     repoUrl: z.url().optional(),
