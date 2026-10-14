@@ -57,8 +57,4 @@ export const personStructuredData = {
     "Developer Tools",
     "Data Analysis",
   ],
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "B.Tech CSE",
-  },
 } as const;
