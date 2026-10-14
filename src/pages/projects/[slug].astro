@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import ButtonLink from "../../components/ButtonLink.astro";
+import IPhoneFrame from "../../components/IPhoneFrame.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import TagList from "../../components/TagList.astro";
@@ -28,6 +29,10 @@ const repoUrl = project.data.repoUrl ?? project.data.repository;
 const apiUrl = project.data.apiUrl ?? project.data.liveApi;
 const proofUrl = project.data.proofUrl ?? project.data.proof;
 const demoVideoUrl = project.data.demoVideoUrl ?? project.data.videoUrl;
+const isCareMomentum = project.id === "care-momentum";
+const localVideoUrl = demoVideoUrl?.startsWith("/videos/") && isRenderableAsset(demoVideoUrl)
+  ? demoVideoUrl
+  : undefined;
 const proofLinks = [
   liveDemoUrl && { href: liveDemoUrl, label: "Live Demo" },
   repoUrl && { href: repoUrl, label: "Repository" },
@@ -135,7 +140,7 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               <ButtonLink href={liveDemoUrl} label="Live Demo Experience" variant="primary" external />
             ) : (
               <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
-                Demo coming soon
+                {project.data.demoUnavailableLabel ?? "Demo coming soon"}
               </span>
             )
           }
@@ -145,14 +150,19 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               <ButtonLink href={repoUrl} label="Source Repository" external />
             ) : (
               <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
-                Source repository coming soon
+                {project.data.repoUnavailableLabel ?? "Source repository coming soon"}
               </span>
             )
           }
 
           {apiUrl && <ButtonLink href={apiUrl} label="Live API" external />}
+          {project.data.apiUnavailableLabel && !apiUrl && (
+            <span class="glass-control glass-control-secondary inline-flex min-h-12 items-center justify-center rounded-md border px-5 text-[15px] font-semibold text-portfolio-muted">
+              {project.data.apiUnavailableLabel}
+            </span>
+          )}
           {proofUrl && <ButtonLink href={proofUrl} label="Proof Link" external />}
-          {demoVideoUrl && <ButtonLink href={demoVideoUrl} label="Video" external />}
+          {demoVideoUrl && <ButtonLink href={localVideoUrl ? "#walkthrough" : demoVideoUrl} label={localVideoUrl ? "Watch Walkthrough" : "Video"} external={!localVideoUrl} />}
           <ButtonLink href="/#projects" label="Back to Projects" />
         </div>
 
@@ -171,18 +181,27 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
             <h2 class="mt-3 font-display text-3xl font-semibold leading-tight text-portfolio-ink">
               Screenshots, proof links, and inspectable artifacts.
             </h2>
+            {isCareMomentum && (
+              <p class="mt-4 text-[15px] leading-7 text-portfolio-muted">
+                Real simulator captures with synthetic patient data, presented in an iPhone frame.
+              </p>
+            )}
 
             {uniqueProofMedia.length > 0 && (
-              <div class="mt-6 grid gap-6">
+              <div class:list={["mt-6 grid gap-6", isCareMomentum && "sm:grid-cols-2"]}>
                 {uniqueProofMedia.map((screenshot) => (
-                <figure class="premium-surface overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface">
-                  <img
+                <figure class={isCareMomentum ? "flex flex-col gap-5 pt-3" : "premium-surface overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface"}>
+                  {isCareMomentum ? (
+                    <IPhoneFrame>
+                      <img src={screenshot.src} alt={screenshot.alt} loading="lazy" width="1179" height="2556" />
+                    </IPhoneFrame>
+                  ) : <img
                     src={screenshot.src}
                     alt={screenshot.alt}
                     loading="lazy"
                     class="aspect-video w-full bg-portfolio-bg object-cover"
-                  />
-                  <figcaption class="border-t border-portfolio-line px-5 py-4 text-[15px] leading-7 text-portfolio-muted">
+                  />}
+                  <figcaption class={isCareMomentum ? "premium-surface flex-1 rounded-lg border border-portfolio-line bg-portfolio-surface px-5 py-4 text-[15px] leading-7 text-portfolio-muted" : "border-t border-portfolio-line px-5 py-4 text-[15px] leading-7 text-portfolio-muted"}>
                     {screenshot.caption}
                   </figcaption>
                 </figure>
@@ -190,10 +209,36 @@ const hasProjectProof = uniqueProofMedia.length > 0 || Boolean(demoVideoUrl) || 
               </div>
             )}
 
-            {demoVideoUrl && (
-              <div class="mt-6">
-                <ButtonLink href={demoVideoUrl} label="Demo Video" external />
-              </div>
+            {localVideoUrl ? (
+              <figure id="walkthrough" class={isCareMomentum ? "mt-10 flex flex-col gap-5" : "premium-surface mt-6 overflow-hidden rounded-lg border border-portfolio-line bg-portfolio-surface"}>
+                {isCareMomentum ? (
+                  <IPhoneFrame>
+                    <video controls playsinline preload="metadata" poster="/images/projects/care-momentum/today.webp" aria-label={`${project.data.title} walkthrough`}>
+                      <source src={localVideoUrl} type="video/mp4" />
+                      <a href={localVideoUrl}>Download the walkthrough</a>
+                    </video>
+                  </IPhoneFrame>
+                ) : (
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster={isCareMomentum ? "/images/projects/care-momentum/today.webp" : undefined}
+                  aria-label={`${project.data.title} walkthrough`}
+                  class="mx-auto h-auto w-full max-w-sm bg-portfolio-bg object-contain"
+                >
+                  <source src={localVideoUrl} type="video/mp4" />
+                  <a href={localVideoUrl}>Download the walkthrough</a>
+                </video>)}
+                <figcaption class={isCareMomentum ? "premium-surface rounded-lg border border-portfolio-line bg-portfolio-surface px-5 py-4 text-[15px] leading-7 text-portfolio-muted" : "border-t border-portfolio-line px-5 py-4 text-[15px] leading-7 text-portfolio-muted"}>
+                  {isCareMomentum && "90-second simulator recording with synthetic patient data: Today, recording a medication as taken, dose details, and an appointment. Silent walkthrough; no narration."}
+                  {" "}<a href={localVideoUrl} class="underline underline-offset-4">Open video</a>
+                </figcaption>
+              </figure>
+            ) : demoVideoUrl && (
+                <div class="mt-6">
+                  <ButtonLink href={demoVideoUrl} label="Demo Video" external />
+                </div>
             )}
 
             {proofLinks.length > 0 && (

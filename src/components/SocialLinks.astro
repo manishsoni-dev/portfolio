@@ -4,7 +4,7 @@
 interface Props {
   /** Use "light" on dark backgrounds (footer/contact), "dark" on light backgrounds (hero). */
   variant?: "dark" | "light";
-  /** Filter which links to show. "career" = LinkedIn, GitHub, X. "personal" = YouTube, Instagram, Facebook. "all" = everything. */
+  /** Filter which links to show. "career" = LinkedIn, GitHub, X. "personal" = Instagram, Facebook. "all" = everything. */
   filter?: "career" | "personal" | "all";
 }
 
@@ -28,12 +28,6 @@ const allSocials = [
     href: "https://x.com/manishsoni_dev",
     icon: "x",
     group: "career" as const,
-  },
-  {
-    name: "YouTube",
-    href: "https://www.youtube.com/@hahamanish",
-    icon: "youtube",
-    group: "personal" as const,
   },
   {
     name: "Instagram",

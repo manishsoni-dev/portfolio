@@ -3,8 +3,8 @@ export const profile = {
   logo: "Manish Soni",
   role: "Python AI Developer · LLM Applications · Backend APIs",
   headline:
-    "B.Tech CSE Graduate building AI applications with Python, LLM APIs, RAG-style workflows, and backend systems.",
-  education: "B.Tech CSE Graduate",
+    "Building AI and backend applications with Python and TypeScript, alongside Care Momentum, a native SwiftUI iOS app in development.",
+  education: "B.Tech CSE",
   location: "India",
   availability: "Open to remote AI/Python roles, internships & junior developer opportunities",
   links: {
@@ -22,6 +22,14 @@ export const profile = {
     "Software Engineering Intern",
   ],
   skills: {
+    "iOS Development": [
+      "Swift",
+      "SwiftUI",
+      "SwiftData",
+      "Xcode",
+      "XCTest / XCUITest",
+      "Supabase Integration",
+    ],
     "Languages & Backend": [
       "Python",
       "TypeScript",
@@ -64,5 +72,6 @@ export const profile = {
     "Backend APIs",
     "RAG-style Workflows",
     "Developer Tools",
+    "iOS / SwiftUI",
   ],
 } as const;

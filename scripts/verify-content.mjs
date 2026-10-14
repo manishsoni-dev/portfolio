@@ -8,7 +8,7 @@ const requiredSnippets = [
   "https://www.linkedin.com/in/manishsoni-dev",
   "mmanishsoni70@gmail.com",
   "India",
-  "B.Tech CSE Graduate",
+  "B.Tech CSE",
   "Python AI Developer",
   "LLM Applications",
   "Backend APIs",
@@ -21,6 +21,7 @@ const requiredSnippets = [
   "Currently targeting",
   "Hire me",
   "ArchGuard",
+  "Care Momentum",
   "Shri AI",
   "Aidssist",
   "Aegis",
@@ -269,16 +270,18 @@ function normalizeOptionalUrl(url) {
 }
 
 function verifyProjectOrder(html) {
+  const projectSection = html.slice(html.indexOf('id="projects"'));
   const expectedOrder = [
     "ArchGuard",
-    "Shri AI",
+    "Care Momentum",
     "Aidssist V3",
+    "Shri AI",
     "Aegis",
     "AI Fraud Detection System",
   ];
   const positions = expectedOrder.map((title) => ({
     title,
-    index: html.indexOf(title),
+    index: projectSection.indexOf(title),
   }));
 
   for (const { title, index } of positions) {
@@ -303,7 +306,6 @@ function verifyArchGuardProofLinks(html) {
   const requiredLinks = [
     "https://demo-web-delta-five.vercel.app",
     "https://github.com/manishsoni-dev/ArchGuard",
-    "https://arch-guard-1--manishsoni-dev.replit.app",
     "https://github.com/manishsoni-dev/ArchGuard/pull/8",
   ];
 
@@ -404,6 +406,12 @@ function verifyMediaAssets() {
     "public/images/projects/archguard/proof-surface.png",
     "public/images/projects/archguard/proof-pr.png",
     "public/images/projects/aidssist-v3/demo-dashboard.png",
+    "public/images/projects/care-momentum/today.webp",
+    "public/images/projects/care-momentum/medications.webp",
+    "public/images/projects/care-momentum/medication-detail.webp",
+    "public/images/projects/care-momentum/appointment.webp",
+    "public/images/projects/care-momentum/care-tasks.webp",
+    "public/images/projects/care-momentum/health-record.webp",
   ];
 
   for (const mediaPath of requiredMedia) {
@@ -411,6 +419,27 @@ function verifyMediaAssets() {
 
     if (!existsSync(absolutePath) || statSync(absolutePath).size < 10_000) {
       failures.push(`Required proof media is missing or too small: ${mediaPath}`);
+    }
+  }
+
+  const videoPath = join(root, "public/videos/projects/care-momentum/walkthrough.mp4");
+  if (!existsSync(videoPath) || statSync(videoPath).size < 10_000 || statSync(videoPath).size > 5_000_000) {
+    failures.push("Care Momentum walkthrough must be present and remain a modest local video asset.");
+  }
+
+  const carePage = readIfExists(join(root, "dist/projects/care-momentum/index.html"));
+  const framedCaptures = carePage.match(/class="iphone-screen\b/g) ?? [];
+  if (!carePage.includes('/videos/projects/care-momentum/walkthrough.mp4') || framedCaptures.length !== 7) {
+    failures.push("Care Momentum proof page must retain six framed screenshots and its framed walkthrough.");
+  }
+
+  for (const brokenDestination of [
+    "https://arch-guard-1--manishsoni-dev.replit.app",
+    "https://github.com/manishsoni-dev/ai-fraud-detection",
+    "https://www.youtube.com/@hahamanish",
+  ]) {
+    if (builtCorpus.includes(brokenDestination)) {
+      failures.push(`Previously verified unavailable destination is still published: ${brokenDestination}`);
     }
   }
 }
